@@ -1,0 +1,16 @@
+
+BUG FIXED for RGBDSLAMv2
+1. in function "getTransformFromMatchesG2O" in file "transformation_estimation.cpp",
+   the 2nd argument for sensorVerticesSetup should be transformation_estimate.inverse(), 
+   instead of transformation_estimate.
+2. in function "optimizerSetup" in file "transformation_estimation.cpp", 
+   changed solver from GaussNewton to LevMar, which solves problematic optimization results.
+3. in function Node::matchNodePair(const Node* older_node) in file "node.cpp",
+   when USE_PCL_ICP is defined, the edge information matrix obtained by pcl_icp was not initialized.
+   now fixed by setting it to identity.
+ 
+
+
+
+
+

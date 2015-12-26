@@ -1,0 +1,39 @@
+1. opencv mat element access: a) do type check, b) choose the fastest way
+2. opencv mat float vs double type, check before access
+3. problem: synchronized rgb-d frame number is much lower than message number...
+4. openblas not support openmp and multithread
+
+
+
+
+
+
+BUG FIXED for RGBDSLAMv2
+1. in function "getTransformFromMatchesG2O" in file "transformation_estimation.cpp",
+   the 2nd argument for sensorVerticesSetup should be transformation_estimate.inverse(), 
+   instead of transformation_estimate.
+2. in function "optimizerSetup" in file "transformation_estimation.cpp", 
+   changed solver from GaussNewton to LevMar, which solves problematic optimization results.
+3. in function Node::matchNodePair(const Node* older_node) in file "node.cpp",
+   when USE_PCL_ICP is defined, the edge information matrix obtained by pcl_icp was not initialized.
+   now fixed by setting it to identity.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+LEARNING
+1. opencv: reading matrix elements using at<> is much faster than in writing them.
+2. Eigen: reading/writing fixed size type like Matrix3d is much faster than MatrixX. 
+3. writing Fixed Size matrix elements in Eigen is much faster than in opencv. reading speed is similar.
+4. opencv: reading mat element speed varies from type to type. uchar is faster than double.
+5. for small matrix arithmeitcs like multipy add, eigen is ~10 faster than opencv 

@@ -1,0 +1,2 @@
+/home/ylu/data/rgbd_dataset_freiburg1_desk
+

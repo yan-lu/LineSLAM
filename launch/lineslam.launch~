@@ -1,0 +1,48 @@
+<!-- This file shows the most important parameters in their default settings,
+     to make them easily available for beginners.
+
+     The openni driver has to be started seperately, e.g. with "roslaunch openni_launch openni.launch" -->
+<launch>
+  <node pkg="lineslam" type="lineslam" name="lineslam" cwd="node" required="true" output="screen" > 
+    <param name="config/topic_image_mono"              value="/camera/rgb/image_rect_color"/>  
+    <param name="config/topic_image_depth"             value="/camera/depth_registered/image_rect"/>
+    <param name="config/raw_data_dir_list_file"	       value="/home/ylu/ros/hydro/ckws/src/lineslam/src/line/data_dir_list.txt"/>
+
+    <param name="config/topic_points"                  value=""/> <!--if empty, poincloud will be reconstructed from image and depth -->  
+    <param name="config/feature_detector_type"         value="SURF"/><!-- If SIFTGPU is enabled in CMakeLists.txt, use SURF here -->
+    <param name="config/feature_extractor_type"        value="SURF"/><!-- If SIFTGPU is enabled in CMakeLists.txt, use SURF here -->
+    <param name="config/nn_distance_ratio"             value="0.75"/> 
+    <param name="config/max_keypoints"                 value="600"/><!-- Extract no more than this many keypoints (not honored by SIFTGPU)-->
+    <param name="config/min_translation_meter"         value="0.01"/><!-- frames with motion less than this, will be omitted -->
+    <param name="config/min_rotation_degree"           value="0.1"/><!-- frames with motion less than this, will be omitted -->
+    <param name="config/data_skip_step"                value="-1"/><!-- skip every n-th frame completely -->
+    <param name="config/concurrent_optimization"       value="true"/> <!-- Do graph optimization in a seperate thread -->
+    <param name="config/concurrent_edge_construction"  value="true"/> <!--not sure g2o multithread safe or not-->	
+    <param name="config/concurrent_node_construction"  value="true"/>
+    <param name="config/skip_first_n_frames"           value="0"/>
+    <param name="config/start_paused" 		       value="false"/>
+    <param name="config/keep_all_nodes"  	       value="true"/>	
+    <param name="config/min_matches"		       value="10"/>
+    <param name="config/min_matches_loopclose"	       value="20"/>   
+    	
+    <param name="config/store_pointclouds"             value="true"/> <!-- if, e.g., only trajectory is required, setting this to false saves lots of memory -->
+    <param name="config/glwidget_without_clouds"       value="true"/>
+    <param name="config/emm__skip_step"		       value="-1"/> <!-- disable emm => not store cloud, save memory -->
+    <param name="config/use_icp"		       value="true"/>
+    <param name="config/clear_non_keyframes"	       value="true"/>
+    <param name="config/matcher_type" value="BRUTEFORCE"/>
+
+    <param name="config/predecessor_candidates"        value="1"/>
+    <param name="config/neighbor_candidates"           value="0"/>
+    <param name="config/min_sampled_candidates"        value="0"/>
+
+    <param name="config/lsd_angle_thres"               value="40"/>
+    <param name="config/g2o_transformation_refinement" value="10"/>
+    <param name="config/line_2d_len_thres"   	       value="10"/>
+    <param name="config/line_detect_algorithm"	       value="LSD"/>
+    <param name="config/max_dist_for_inliers" 	       value="3"/>
+    <param name="config/sample_pt_std_imgline"         value="3"/>
+    <param name="config/g2o_line_error_weight"	       value="1"/>
+    <param name="config/use_gui"		       value="true"/>
+  </node>
+</launch>
