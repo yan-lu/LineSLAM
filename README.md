@@ -8,7 +8,7 @@ Line feature based RGBD SLAM, supporting fusion with point features, developed b
 2. OpenCV 2.4.X
 3. [OpenBLAS](http://www.openblas.net/) (build from source)
 4. [Armadillo](http://arma.sourceforge.net/)
-5. Eigen3
+5. Eigen3 (download from [official website](http://eigen.tuxfamily.org/index.php?title=Main_Page) and *replace* the default one if on Ubuntu)
 6. [LSD](http://www.ipol.im/pub/art/2012/gjmr-lsd/), [EDLines](http://ceng.anadolu.edu.tr/CV/downloads/downloads.aspx), [levmar](http://users.ics.forth.gr/~lourakis/levmar/) : included in this repo.
 
 ===============
